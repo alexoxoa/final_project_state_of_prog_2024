@@ -1,54 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="final_project_state_of_prog_2024.Reader" Collapsed="true">
-    <Position X="5.75" Y="2" Width="1.5" />
+  <Class Name="final_project_state_of_prog_2024.Reader">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="final_project_state_of_prog_2024.Reader.BookActionEventHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Class1.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAEABBAAQAAAQAAAAAAQABAAACAAAAAAAAAAAAAg=</HashCode>
-      <FileName>Class1.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="final_project_state_of_prog_2024.VIPReader" Collapsed="true">
-    <Position X="5.75" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAABAAQAAAQAAAAAAQABAAACEAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="final_project_state_of_prog_2024.BookActionEventArgs" Collapsed="true">
-    <Position X="11.5" Y="2" Width="1.5" />
+    <Position X="10.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="final_project_state_of_prog_2024.Book" Collapsed="true">
-    <Position X="7.5" Y="2" Width="1.5" />
+    <Position X="10.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEAEgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="final_project_state_of_prog_2024.Person" Collapsed="true">
-    <Position X="9.5" Y="2" Width="1.5" />
+    <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgIAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="final_project_state_of_prog_2024.LibraryEmployee" Collapsed="true">
-    <Position X="9.5" Y="3" Width="1.5" />
+  <Class Name="final_project_state_of_prog_2024.LibraryEmployee">
+    <Position X="8.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAQgABAAAAAAgACQAAAAAAAAAAEAAAAAAAAAEAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="final_project_state_of_prog_2024.BorrowedBook" Collapsed="true">
-    <Position X="7.5" Y="3.25" Width="1.5" />
+  <Class Name="final_project_state_of_prog_2024.BorrowedBook">
+    <Position X="12.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAEAAEAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Interface Name="final_project_state_of_prog_2024.IEmployeeActions" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Class1.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

@@ -8,59 +8,29 @@ using System.Collections.Generic;
 
 namespace final_project_state_of_prog_2024
 {
-    public class Reader
+    public class Reader : Person
     {
-        // Свойства для хранения информации о читателе
-        public string FirstName { get; set; }     // Имя читателя
-        public string LastName { get; set; }      // Фамилия читателя
 
         // Словарь для хранения книг и дат их взятия
         public Dictionary<string, DateTime> BorrowedBooks { get; set; } = new Dictionary<string, DateTime>();
 
-        // Конструктор для инициализации имени и фамилии
-        public Reader(string firstName, string lastName)
+        // Конструктор для инициализации ID и полного имени
+        public Reader(int id, string fullName)
+            : base(id, fullName) { }
+
+        // Реализация абстрактного метода GetInfo
+        public override string GetInfo()
         {
-            FirstName = firstName;
-            LastName = lastName;
+            string borrowedBooksInfo = BorrowedBooks.Count > 0
+                ? string.Join("\n", BorrowedBooks.Select(b => $"- {b.Key} (Borrowed on: {b.Value:d})"))
+                : "No borrowed books.";
+
+            return $"ID: {ID}, Full Name: {FullName}\nBorrowed Books:\n{borrowedBooksInfo}";
         }
 
         // Метод для добавления взятой книги
-        //public void BorrowBook(string bookTitle, DateTime borrowDate)
-        //{
-        //    BorrowedBooks[bookTitle] = borrowDate;  // Добавляем или обновляем книгу с датой
-        //}
-
-        // Метод для отображения информации о читателе и взятых книгах
-        public string GetReaderInfo()
-        {
-            string info = $"Reader: {FirstName} {LastName}\nBorrowed Books:\n";
-            foreach (var book in BorrowedBooks)
-            {
-                info += $"- {book.Key} (Borrowed on: {book.Value:d})\n";
-            }
-            return info;
-        }
-        public void SaveBorrowedBookToFile(string bookTitle, string author, DateTime borrowDate, string filePath)
-        {
-            string record = $"{FirstName} {LastName} взял(а) книгу '{bookTitle}' '{author}' {borrowDate:d}\n";
-
-            // Открываем файл в режиме добавления и записываем запись
-            File.AppendAllText(filePath, record);
-        }
-
-        // Делегат для обработки событий действия с книгами (взятие или возврат)
-        public delegate void BookActionEventHandler(object sender, BookActionEventArgs e);
-
-        // Событие для уведомления о взятии книги
-        public event BookActionEventHandler BookBorrowed;
-
-        // Событие для уведомления о возврате книги
-        public event BookActionEventHandler BookReturned;
-
-        // Метод для взятия книги
         public virtual void BorrowBook(string bookTitle, DateTime borrowDate)
         {
-            // Добавляем книгу в список взятых и генерируем событие BookBorrowed
             BorrowedBooks[bookTitle] = borrowDate;
             BookBorrowed?.Invoke(this, new BookActionEventArgs(bookTitle, borrowDate));
         }
@@ -71,28 +41,43 @@ namespace final_project_state_of_prog_2024
             DateTime returnDate = DateTime.Now;
             BorrowedBooks.Remove(bookTitle);
             BookReturned?.Invoke(this, new BookActionEventArgs(bookTitle, returnDate));
-
         }
 
+        // Метод для сохранения информации о взятой книге в файл
+        public void SaveBorrowedBookToFile(string bookTitle, string author, DateTime borrowDate, string filePath)
+        {
+            string record = $"{FullName} взял(а) книгу '{bookTitle}'  {author}  {borrowDate:d}\n";
+            File.AppendAllText(filePath, record);
+        }
 
+        // Делегат для обработки событий действия с книгами (взятие или возврат)
+        public delegate void BookActionEventHandler(object sender, BookActionEventArgs e);
+
+        // События для уведомления о действиях с книгами
+        public event BookActionEventHandler BookBorrowed;
+        public event BookActionEventHandler BookReturned;
     }
 
-    public class VIPReader : Reader
-    {
-        public VIPReader(string firstName, string lastName) : base(firstName, lastName)
-        {
-        }
 
-        // Переопределяем метод BorrowBook для VIPReader
-        public override void BorrowBook(string bookTitle, DateTime borrowDate)
-        {
-            // Вызываем базовый метод, чтобы добавить книгу и вызвать событие
-            base.BorrowBook(bookTitle, borrowDate);
+    //public class VIPReader : Reader
+    //{
+    //    public VIPReader(int id, string firstName, string lastName)
+    //        : base(id, firstName, lastName) { }
 
-            // Дополнительная логика для VIPReader
-            Console.WriteLine("VIP читатель взял книгу!");
-        }
-    }
+    //    // Переопределяем метод BorrowBook для VIPReader
+    //    public override void BorrowBook(string bookTitle, DateTime borrowDate)
+    //    {
+    //        base.BorrowBook(bookTitle, borrowDate);
+    //        Console.WriteLine("VIP читатель взял книгу!");
+    //    }
+
+    //    // Добавляем дополнительную информацию для VIPReader
+    //    public override string GetInfo()
+    //    {
+    //        return base.GetInfo() + "\nСтатус: VIP";
+    //    }
+    //}
+
 
 
 
@@ -129,8 +114,7 @@ namespace final_project_state_of_prog_2024
             return $"{Title} — {Author}";
         }
     }
-
-    public class Person
+    public abstract class Person
     {
         public int ID { get; set; }
         public string FullName { get; set; }
@@ -141,12 +125,11 @@ namespace final_project_state_of_prog_2024
             FullName = fullName;
         }
 
-        // Виртуальный метод для переопределения
-        public virtual string GetInfo()
-        {
-            return $"ID: {ID}, Имя: {FullName}";
-        }
+        // Абстрактный метод для предоставления информации о человеке
+        public abstract string GetInfo();
+
     }
+
 
     public class LibraryEmployee : Person, IEmployeeActions
     {
@@ -160,9 +143,10 @@ namespace final_project_state_of_prog_2024
             LibraryAddress = libraryAddress;
         }
 
+        // Реализация абстрактного метода
         public override string GetInfo()
         {
-            return base.GetInfo() + $", Должность: {Position}, Адрес библиотеки: {LibraryAddress}";
+            return $"ID: {ID}, Имя: {FullName}, Должность: {Position}, Адрес библиотеки: {LibraryAddress}";
         }
 
         public void ManageBorrowedBooks()
@@ -217,7 +201,11 @@ namespace final_project_state_of_prog_2024
     }
 
 
-
+    public interface IEmployeeActions
+    {
+        void ManageBorrowedBooks(); // Управление файлами книг
+        void NotifyReaders();       // Отправка уведомлений
+    }
 
 
 }

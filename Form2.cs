@@ -103,22 +103,20 @@ namespace final_project_state_of_prog_2024
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string firstName = textBox1.Text;
-            string lastName = textBox2.Text;
+            // Получение данных из текстовых полей
+            string fullName = textBox1.Text + " " + textBox2.Text; // Собираем полное имя
             string bookTitle = textBox3.Text;
             string bookAuthor = textBox4.Text;
 
-            
-
-            // Формируем запись для поиска
-            string recordToRemove = $"{firstName} {lastName} взял(а) книгу '{bookTitle}' '{bookAuthor}'";
-
-            // Читаем все строки из файла
+            // Формируем строку для поиска
+            string recordToRemove = $"{fullName} взял(а) книгу '{bookTitle}' '{bookAuthor}'";
             string filePath = "borrowed_books.txt";
+
+            // Читаем строки из файла
             List<string> lines = new List<string>(File.ReadAllLines(filePath));
             bool bookReturned = false;
 
-            // Ищем и удаляем строку о книге, которую хочет вернуть пользователь
+            // Удаляем строку о возврате книги
             for (int i = lines.Count - 1; i >= 0; i--)
             {
                 if (lines[i].StartsWith(recordToRemove))
@@ -129,20 +127,19 @@ namespace final_project_state_of_prog_2024
                 }
             }
 
-
-
-            // Если запись найдена и удалена
             if (bookReturned)
             {
-                Reader reader = new Reader(firstName, lastName);
+                // Создаем объект Reader, передавая ID и полное имя
+                int readerId = new Random().Next(1, 1000); // Генерируем случайный ID
+                Reader reader = new Reader(readerId, fullName);
 
-                // Подпишитесь на событие BookReturned
+                // Подписываемся на событие возврата книги
                 reader.BookReturned += OnBookReturned;
 
-                // Возврат книги с вызовом события
+                // Возвращаем книгу и вызываем событие
                 reader.ReturnBook(bookTitle);
 
-                // Перезаписываем файл без удаленной строки
+                // Перезаписываем файл с удаленной строкой
                 File.WriteAllLines(filePath, lines);
 
                 // Находим жанр книги, чтобы вернуть её в список
@@ -158,23 +155,34 @@ namespace final_project_state_of_prog_2024
                     }
                 }
 
-                // Если книга не была найдена в списке жанров, добавляем её
-                string selectedGenre = comboBox1.SelectedItem.ToString();
-                booksByGenre[selectedGenre].Add(new Book(bookTitle, bookAuthor));
+                // Если книга не найдена, добавляем её в выбранный жанр
+                if (comboBox1.SelectedItem != null)
+                {
+                    string selectedGenre = comboBox1.SelectedItem.ToString();
+                    if (!booksByGenre.ContainsKey(selectedGenre))
+                        booksByGenre[selectedGenre] = new List<Book>();
 
-                // Обновляем listBox1 для выбранного жанра
-                listBox1.Items.Clear();
-                listBox1.Items.AddRange(booksByGenre[selectedGenre].ToArray());
+                    booksByGenre[selectedGenre].Add(new Book(bookTitle, bookAuthor));
 
-                MessageBox.Show($"Книга '{bookTitle}' была возвращена в библиотеку и добавлена в жанр '{selectedGenre}'.");
+                    // Обновляем listBox1
+                    listBox1.Items.Clear();
+                    listBox1.Items.AddRange(booksByGenre[selectedGenre].ToArray());
 
-
+                    MessageBox.Show($"Книга '{bookTitle}' была возвращена в библиотеку и добавлена в жанр '{selectedGenre}'.");
+                }
+                else
+                {
+                    MessageBox.Show("Пожалуйста, выберите жанр для возвращенной книги.");
+                }
             }
             else
             {
                 MessageBox.Show("Книга не найдена среди записей о взятых книгах.");
             }
         }
+
+
+
 
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -206,34 +214,44 @@ namespace final_project_state_of_prog_2024
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string firstName = textBox1.Text;
-            string lastName = textBox2.Text;
+            string fullName = textBox1.Text + " " + textBox2.Text; // Формируем полное имя
 
             if (listBox1.SelectedItem is Book selectedBook)
             {
                 DateTime borrowDate = DateTime.Now;
                 DateTime returnDate = borrowDate.AddDays(14);
 
-                Reader reader = new Reader(firstName, lastName);
-                reader.BookBorrowed += OnBookBorrowed;
+                // Генерируем случайный ID для Reader
+                int readerId = new Random().Next(1, 1000);
 
+                // Создаем объект Reader с учетом нового конструктора
+                Reader reader = new Reader(readerId, fullName);
+
+                // Подписываемся на события
+                reader.BookBorrowed += OnBookBorrowed;
                 reader.BookBorrowed += OnBookBorrowedNotification;
 
+                // Взятие книги и вызов события
                 reader.BorrowBook(selectedBook.Title, borrowDate);
 
+                // Сохранение информации о взятой книге в файл
                 reader.SaveBorrowedBookToFile(selectedBook.Title, selectedBook.Author, borrowDate, "borrowed_books.txt");
 
+                // Удаляем книгу из списка
                 listBox1.Items.Remove(selectedBook);
 
+                // Показываем сообщение о взятии книги
                 MessageBox.Show($"Информация о взятой книге сохранена.\n" +
                                 $"Книгу '{selectedBook.Title}' нужно вернуть до: {returnDate:d}",
                                 "Информация о взятой книге");
             }
             else
             {
+                // Сообщение, если книга не выбрана
                 MessageBox.Show("Пожалуйста, выберите книгу из списка.", "Ошибка");
             }
         }
+
 
 
 

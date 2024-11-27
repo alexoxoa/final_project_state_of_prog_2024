@@ -109,10 +109,6 @@ namespace final_project_state_of_prog_2024
 
         }
     }
-    public interface IEmployeeActions
-    {
-        void ManageBorrowedBooks(); // Управление файлами книг
-        void NotifyReaders();       // Отправка уведомлений
-    }
+
 
 }
