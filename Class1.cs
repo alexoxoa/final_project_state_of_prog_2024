@@ -3,22 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
+using System.IO;
 
 namespace final_project_state_of_prog_2024
 {
-    public class Reader : Person
+    // Интерфейс для обработки действий с книгами (Borrow, Return)
+    public interface IBorrowable
     {
+        void BorrowBook(string bookTitle, DateTime borrowDate);
+        void ReturnBook(string bookTitle);
+    }
 
-        // Словарь для хранения книг и дат их взятия
+    // Интерфейс для обработки действий пользователя (например, читателя)
+    public interface IUserActions
+    {
+        string GetInfo(); // Получить информацию о пользователе
+    }
+
+    public class Reader : Person, IBorrowable, IUserActions
+    {
         public Dictionary<string, DateTime> BorrowedBooks { get; set; } = new Dictionary<string, DateTime>();
 
-        // Конструктор для инициализации ID и полного имени
         public Reader(int id, string fullName)
             : base(id, fullName) { }
 
-        // Реализация абстрактного метода GetInfo
         public override string GetInfo()
         {
             string borrowedBooksInfo = BorrowedBooks.Count > 0
@@ -28,14 +36,13 @@ namespace final_project_state_of_prog_2024
             return $"ID: {ID}, Full Name: {FullName}\nBorrowed Books:\n{borrowedBooksInfo}";
         }
 
-        // Метод для добавления взятой книги
-        public virtual void BorrowBook(string bookTitle, DateTime borrowDate)
+        // Реализация интерфейса IBorrowable
+        public void BorrowBook(string bookTitle, DateTime borrowDate)
         {
             BorrowedBooks[bookTitle] = borrowDate;
             BookBorrowed?.Invoke(this, new BookActionEventArgs(bookTitle, borrowDate));
         }
 
-        // Метод для возврата книги
         public void ReturnBook(string bookTitle)
         {
             DateTime returnDate = DateTime.Now;
@@ -43,45 +50,17 @@ namespace final_project_state_of_prog_2024
             BookReturned?.Invoke(this, new BookActionEventArgs(bookTitle, returnDate));
         }
 
-        // Метод для сохранения информации о взятой книге в файл
         public void SaveBorrowedBookToFile(string bookTitle, string author, DateTime borrowDate, string filePath)
         {
-            string record = $"{FullName} взял(а) книгу '{bookTitle}'  {author}  {borrowDate:d}\n";
+            string record = $"{FullName} взял(а) книгу '{bookTitle}' {author} {borrowDate:d}\n";
             File.AppendAllText(filePath, record);
         }
 
-        // Делегат для обработки событий действия с книгами (взятие или возврат)
         public delegate void BookActionEventHandler(object sender, BookActionEventArgs e);
-
-        // События для уведомления о действиях с книгами
         public event BookActionEventHandler BookBorrowed;
         public event BookActionEventHandler BookReturned;
     }
 
-
-    //public class VIPReader : Reader
-    //{
-    //    public VIPReader(int id, string firstName, string lastName)
-    //        : base(id, firstName, lastName) { }
-
-    //    // Переопределяем метод BorrowBook для VIPReader
-    //    public override void BorrowBook(string bookTitle, DateTime borrowDate)
-    //    {
-    //        base.BorrowBook(bookTitle, borrowDate);
-    //        Console.WriteLine("VIP читатель взял книгу!");
-    //    }
-
-    //    // Добавляем дополнительную информацию для VIPReader
-    //    public override string GetInfo()
-    //    {
-    //        return base.GetInfo() + "\nСтатус: VIP";
-    //    }
-    //}
-
-
-
-
-    // Класс для передачи данных о событии (название книги и дата действия)
     public class BookActionEventArgs : EventArgs
     {
         public string BookTitle { get; }
@@ -94,9 +73,6 @@ namespace final_project_state_of_prog_2024
         }
     }
 
-
-
-
     public class Book
     {
         public string Title { get; set; }
@@ -108,12 +84,12 @@ namespace final_project_state_of_prog_2024
             Author = author;
         }
 
-        // Переопределим метод ToString для удобного отображения в listBox1
         public override string ToString()
         {
             return $"{Title} — {Author}";
         }
     }
+
     public abstract class Person
     {
         public int ID { get; set; }
@@ -125,11 +101,15 @@ namespace final_project_state_of_prog_2024
             FullName = fullName;
         }
 
-        // Абстрактный метод для предоставления информации о человеке
         public abstract string GetInfo();
-
     }
 
+    // Интерфейс для обработки действий сотрудников библиотеки
+    public interface IEmployeeActions
+    {
+        void ManageBorrowedBooks();
+        void NotifyReaders();
+    }
 
     public class LibraryEmployee : Person, IEmployeeActions
     {
@@ -143,12 +123,12 @@ namespace final_project_state_of_prog_2024
             LibraryAddress = libraryAddress;
         }
 
-        // Реализация абстрактного метода
         public override string GetInfo()
         {
             return $"ID: {ID}, Имя: {FullName}, Должность: {Position}, Адрес библиотеки: {LibraryAddress}";
         }
 
+        // Реализация интерфейса IEmployeeActions
         public void ManageBorrowedBooks()
         {
             MessageBox.Show($"{FullName} управляет файлами книг.");
@@ -159,7 +139,7 @@ namespace final_project_state_of_prog_2024
             MessageBox.Show($"{FullName} отправляет уведомления читателям.");
         }
 
-        public List<BorrowedBook> BorrowedBooks { get; set; } = new();
+        public List<BorrowedBook> BorrowedBooks { get; set; } = new List<BorrowedBook>();
 
         public void AddBook(BorrowedBook book)
         {
@@ -177,9 +157,7 @@ namespace final_project_state_of_prog_2024
                 richTextBox.Text = string.Join(Environment.NewLine, BorrowedBooks.Select(b => b.GetBookInfo()));
             }
         }
-
     }
-
 
     public class BorrowedBook
     {
@@ -199,16 +177,4 @@ namespace final_project_state_of_prog_2024
             return $"{Title} {Author}, добавлено {BorrowDate.ToShortDateString()}";
         }
     }
-
-
-    public interface IEmployeeActions
-    {
-        void ManageBorrowedBooks(); // Управление файлами книг
-        void NotifyReaders();       // Отправка уведомлений
-    }
-
-
 }
-
-
-

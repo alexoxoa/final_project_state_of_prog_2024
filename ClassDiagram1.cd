@@ -2,6 +2,9 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="final_project_state_of_prog_2024.Reader">
     <Position X="6.5" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
     <NestedTypes>
       <Delegate Name="final_project_state_of_prog_2024.Reader.BookActionEventHandler" Collapsed="true">
         <TypeIdentifier>
@@ -13,6 +16,7 @@
       <HashCode>AAAAAAAABAAQAAAQAAAAAAQABAAACEAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="final_project_state_of_prog_2024.BookActionEventArgs" Collapsed="true">
     <Position X="10.5" Y="2.5" Width="1.5" />
@@ -22,7 +26,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="final_project_state_of_prog_2024.Book" Collapsed="true">
-    <Position X="10.5" Y="3.5" Width="1.5" />
+    <Position X="6.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEAEgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
@@ -44,7 +48,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="final_project_state_of_prog_2024.BorrowedBook">
-    <Position X="12.25" Y="2.25" Width="1.5" />
+    <Position X="8.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAEAAEAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
@@ -54,6 +58,20 @@
     <Position X="10.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Class1.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="final_project_state_of_prog_2024.IBorrowable" Collapsed="true">
+    <Position X="10.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Class1.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="final_project_state_of_prog_2024.IUserActions" Collapsed="true">
+    <Position X="10.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Interface>

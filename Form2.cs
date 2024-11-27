@@ -109,7 +109,7 @@ namespace final_project_state_of_prog_2024
             string bookAuthor = textBox4.Text;
 
             // Формируем строку для поиска
-            string recordToRemove = $"{fullName} взял(а) книгу '{bookTitle}' '{bookAuthor}'";
+            string recordToRemove = $"{fullName} взял(а) книгу '{bookTitle}' {bookAuthor}";
             string filePath = "borrowed_books.txt";
 
             // Читаем строки из файла
