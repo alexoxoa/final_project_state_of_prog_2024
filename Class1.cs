@@ -177,4 +177,38 @@ namespace final_project_state_of_prog_2024
             return $"{Title} {Author}, добавлено {BorrowDate.ToShortDateString()}";
         }
     }
+
+    // Класс VipReader, наследник Person
+    public class VipReader : Person
+    {
+        public string VIPLevel { get; set; }
+
+        public VipReader(int id, string fullName, string vipLevel)
+            : base(id, fullName)
+        {
+            VIPLevel = vipLevel;
+        }
+
+        public override string GetInfo()
+        {
+            return $"VIP Reader: {FullName}, Привилегия: {VIPLevel}\n";
+        }
+    }
+
+    // Агрегация
+    public class VipClient
+    {
+        private VipReader _vipReader;
+
+        public VipClient(VipReader vipReader)
+        {
+            _vipReader = vipReader;
+        }
+
+        public void GetClientInfo()
+        {
+             MessageBox.Show(_vipReader.GetInfo());
+
+        }
+    }
 }

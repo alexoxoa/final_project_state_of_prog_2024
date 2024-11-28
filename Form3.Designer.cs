@@ -41,6 +41,14 @@
             textBox4 = new TextBox();
             label3 = new Label();
             label4 = new Label();
+            button6 = new Button();
+            richTextBox2 = new RichTextBox();
+            textBox5 = new TextBox();
+            label5 = new Label();
+            textBox6 = new TextBox();
+            label6 = new Label();
+            textBox7 = new TextBox();
+            label7 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -171,11 +179,94 @@
             label4.TabIndex = 27;
             label4.Text = "Введите автора книги";
             // 
+            // button6
+            // 
+            button6.BackColor = SystemColors.ButtonFace;
+            button6.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button6.Location = new Point(771, 204);
+            button6.Name = "button6";
+            button6.Size = new Size(350, 85);
+            button6.TabIndex = 33;
+            button6.Text = "Создать Vip-читателя";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
+            // richTextBox2
+            // 
+            richTextBox2.Location = new Point(771, 295);
+            richTextBox2.Name = "richTextBox2";
+            richTextBox2.Size = new Size(350, 143);
+            richTextBox2.TabIndex = 32;
+            richTextBox2.Text = "";
+            richTextBox2.TextChanged += richTextBox2_TextChanged;
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(771, 114);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(350, 27);
+            textBox5.TabIndex = 31;
+            textBox5.TextChanged += textBox5_TextChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label5.Location = new Point(771, 84);
+            label5.Name = "label5";
+            label5.Size = new Size(229, 27);
+            label5.TabIndex = 30;
+            label5.Text = "Введите фамилию";
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(771, 54);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(350, 27);
+            textBox6.TabIndex = 29;
+            textBox6.TextChanged += textBox6_TextChanged;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label6.Location = new Point(771, 24);
+            label6.Name = "label6";
+            label6.Size = new Size(281, 27);
+            label6.TabIndex = 28;
+            label6.Text = "Введите имя VipReader";
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(771, 171);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(350, 27);
+            textBox7.TabIndex = 34;
+            textBox7.TextChanged += textBox7_TextChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label7.Location = new Point(771, 141);
+            label7.Name = "label7";
+            label7.Size = new Size(143, 27);
+            label7.TabIndex = 35;
+            label7.Text = "Привилегия";
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1256, 450);
+            Controls.Add(label7);
+            Controls.Add(textBox7);
+            Controls.Add(button6);
+            Controls.Add(richTextBox2);
+            Controls.Add(textBox5);
+            Controls.Add(label5);
+            Controls.Add(textBox6);
+            Controls.Add(label6);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(textBox4);
@@ -211,5 +302,14 @@
         private TextBox textBox4;
         private Label label3;
         private Label label4;
+        private Button button5;
+        private Button button6;
+        private RichTextBox richTextBox2;
+        private TextBox textBox5;
+        private Label label5;
+        private TextBox textBox6;
+        private Label label6;
+        private TextBox textBox7;
+        private Label label7;
     }
 }

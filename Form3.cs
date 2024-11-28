@@ -108,6 +108,47 @@ namespace final_project_state_of_prog_2024
         {
 
         }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            // Создаем объект VipReader
+            int readerID = new Random().Next(1, 1000); ; // Пример ID
+            string readerName = textBox6.Text + " " + textBox5.Text; // Пример имени
+            string vipLevel = textBox7.Text; // Пример VIP уровня
+
+            VipReader vipReader = new VipReader(readerID, readerName, vipLevel);
+            VipClient vipClient = new VipClient(vipReader);
+
+            // Получаем информацию о VipReader
+            string info = vipReader.GetInfo();
+
+            // Выводим информацию в richTextBox2
+            richTextBox2.Text += info;
+            // Получаем информацию о VipClient
+            vipClient.GetClientInfo();
+
+
+        }
     }
 
 
