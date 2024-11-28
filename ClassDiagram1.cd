@@ -26,7 +26,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="final_project_state_of_prog_2024.Book" Collapsed="true">
-    <Position X="6.5" Y="6.25" Width="1.5" />
+    <Position X="10.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEAEgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
@@ -47,7 +47,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="final_project_state_of_prog_2024.BorrowedBook">
+  <Class Name="final_project_state_of_prog_2024.BorrowedBook" Collapsed="true">
     <Position X="8.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAEAAEAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>

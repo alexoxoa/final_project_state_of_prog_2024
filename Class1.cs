@@ -29,6 +29,8 @@ namespace final_project_state_of_prog_2024
 
     public class Reader : Person, IBorrowable, IUserActions
     {
+        //Композиция
+
         public Dictionary<string, DateTime> BorrowedBooks { get; set; } = new Dictionary<string, DateTime>();
 
         public Reader(int id, string fullName)
@@ -139,7 +141,7 @@ namespace final_project_state_of_prog_2024
         {
             MessageBox.Show($"{FullName} отправляет уведомления читателям.");
         }
-
+        // Ассоциация
         public List<BorrowedBook> BorrowedBooks { get; set; } = new List<BorrowedBook>();
 
         public void AddBook(BorrowedBook book)
