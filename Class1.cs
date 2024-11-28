@@ -14,6 +14,13 @@ namespace final_project_state_of_prog_2024
         void ReturnBook(string bookTitle);
     }
 
+    // Интерфейс для обработки действий сотрудников библиотеки
+    public interface IEmployeeActions
+    {
+        void ManageBorrowedBooks();
+        void NotifyReaders();
+    }
+
     // Интерфейс для обработки действий пользователя (например, читателя)
     public interface IUserActions
     {
@@ -30,10 +37,10 @@ namespace final_project_state_of_prog_2024
         public override string GetInfo()
         {
             string borrowedBooksInfo = BorrowedBooks.Count > 0
-                ? string.Join("\n", BorrowedBooks.Select(b => $"- {b.Key} (Borrowed on: {b.Value:d})"))
-                : "No borrowed books.";
+                ? string.Join("\n", BorrowedBooks.Select(b => $"- {b.Key} (Взяты: {b.Value:d})"))
+                : "Нет взятых книг.";
 
-            return $"ID: {ID}, Full Name: {FullName}\nBorrowed Books:\n{borrowedBooksInfo}";
+            return $"ID: {ID}, Полное имя: {FullName}\nВзятые книги:\n{borrowedBooksInfo}";
         }
 
         // Реализация интерфейса IBorrowable
@@ -104,12 +111,6 @@ namespace final_project_state_of_prog_2024
         public abstract string GetInfo();
     }
 
-    // Интерфейс для обработки действий сотрудников библиотеки
-    public interface IEmployeeActions
-    {
-        void ManageBorrowedBooks();
-        void NotifyReaders();
-    }
 
     public class LibraryEmployee : Person, IEmployeeActions
     {
@@ -179,7 +180,7 @@ namespace final_project_state_of_prog_2024
     }
 
     // Класс VipReader, наследник Person
-    public class VipReader : Person
+    public class VipReader : Person, IUserActions
     {
         public string VIPLevel { get; set; }
 
@@ -211,4 +212,6 @@ namespace final_project_state_of_prog_2024
 
         }
     }
+
+
 }

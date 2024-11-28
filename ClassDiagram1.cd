@@ -60,6 +60,7 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="final_project_state_of_prog_2024.VipClient" Collapsed="true">
     <Position X="12.5" Y="2.5" Width="1.5" />
@@ -68,13 +69,6 @@
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="final_project_state_of_prog_2024.IEmployeeActions" Collapsed="true">
-    <Position X="10.5" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Class1.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="final_project_state_of_prog_2024.IBorrowable" Collapsed="true">
     <Position X="10.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
@@ -86,6 +80,13 @@
     <Position X="10.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Class1.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="final_project_state_of_prog_2024.IEmployeeActions" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Interface>

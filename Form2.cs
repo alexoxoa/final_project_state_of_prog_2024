@@ -1,4 +1,5 @@
-﻿using System;
+﻿using final_project_state_of_prog_2024;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,6 +41,25 @@ namespace final_project_state_of_prog_2024
             }
         };
 
+        // Индексатор для доступа к книгам по жанру и индексу книги внутри жанра
+        public Book this[string genre, int index]
+        {
+            get
+            {
+                if (booksByGenre.ContainsKey(genre) && index >= 0 && index < booksByGenre[genre].Count)
+                    return booksByGenre[genre][index];
+                else
+                    throw new IndexOutOfRangeException("Жанр или индекс книги неверен.");
+            }
+            set
+            {
+                if (booksByGenre.ContainsKey(genre) && index >= 0 && index < booksByGenre[genre].Count)
+                    booksByGenre[genre][index] = value;
+                else
+                    throw new IndexOutOfRangeException("Жанр или индекс книги неверен.");
+            }
+        }
+
 
         public Form2()
         {
@@ -51,7 +71,7 @@ namespace final_project_state_of_prog_2024
         }
 
 
-       
+
 
         // Обработчик события BookReturned - добавляет информацию о возврате книги в лог
         private void OnBookReturned(object sender, BookActionEventArgs e)
@@ -303,6 +323,54 @@ namespace final_project_state_of_prog_2024
         }
 
         private void richTextBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string genre = textBox5.Text;
+            int num = int.Parse(textBox6.Text);
+
+            try
+            {
+                // Получить книгу из заданного жанра и индекса
+                Book selectedBook = this[genre, num];
+
+                // Вывести название книги в RichTextBox
+                richTextBox2.AppendText($"Книга: {selectedBook.Title}, Автор: {selectedBook.Author}" + Environment.NewLine);
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                // В случае ошибки (если жанр или индекс неверны), выводим ошибку
+                richTextBox2.AppendText($"Ошибка: {ex.Message}" + Environment.NewLine);
+            }
+
+            // Получить первую книгу из жанра
+            //Book firstFantasyBook = this[genre, num];
+
+            //// Изменить вторую книгу в жанре "Детектив"
+            //this["Детектив", 1] = new Book("Новое убийство", "Новый Автор");
+
+          
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
