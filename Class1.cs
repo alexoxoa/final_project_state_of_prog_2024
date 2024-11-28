@@ -154,7 +154,7 @@ namespace final_project_state_of_prog_2024
             }
             else
             {
-                richTextBox.Text = string.Join(Environment.NewLine, BorrowedBooks.Select(b => b.GetBookInfo()));
+                richTextBox.Text += string.Join(Environment.NewLine, BorrowedBooks.Select(b => b.GetBookInfo())) + "\n";
             }
         }
     }
