@@ -48,6 +48,12 @@
             button3 = new Button();
             pictureBox1 = new PictureBox();
             richTextBox1 = new RichTextBox();
+            label9 = new Label();
+            textBox5 = new TextBox();
+            label10 = new Label();
+            textBox6 = new TextBox();
+            richTextBox2 = new RichTextBox();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -223,9 +229,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.интер;
-            pictureBox1.Location = new Point(-5, 1);
+            pictureBox1.Location = new Point(-7, -5);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(793, 560);
+            pictureBox1.Size = new Size(1106, 560);
             pictureBox1.TabIndex = 18;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
@@ -239,11 +245,74 @@
             richTextBox1.Text = "";
             richTextBox1.TextChanged += richTextBox1_TextChanged_1;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label9.Location = new Point(784, 37);
+            label9.Name = "label9";
+            label9.Size = new Size(173, 27);
+            label9.TabIndex = 21;
+            label9.Text = "Введите жанр";
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(784, 69);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(258, 27);
+            textBox5.TabIndex = 22;
+            textBox5.TextChanged += textBox5_TextChanged;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label10.Location = new Point(784, 112);
+            label10.Name = "label10";
+            label10.Size = new Size(193, 27);
+            label10.TabIndex = 23;
+            label10.Text = "Введите индекс";
+            label10.Click += label10_Click;
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(784, 142);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(258, 27);
+            textBox6.TabIndex = 24;
+            // 
+            // richTextBox2
+            // 
+            richTextBox2.Location = new Point(784, 187);
+            richTextBox2.Name = "richTextBox2";
+            richTextBox2.Size = new Size(258, 75);
+            richTextBox2.TabIndex = 25;
+            richTextBox2.Text = "";
+            richTextBox2.TextChanged += richTextBox2_TextChanged;
+            // 
+            // button4
+            // 
+            button4.BackColor = SystemColors.ButtonFace;
+            button4.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button4.Location = new Point(784, 283);
+            button4.Name = "button4";
+            button4.Size = new Size(258, 85);
+            button4.TabIndex = 26;
+            button4.Text = "Получить значение по индексу";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(771, 543);
+            ClientSize = new Size(1081, 543);
+            Controls.Add(button4);
+            Controls.Add(richTextBox2);
+            Controls.Add(textBox6);
+            Controls.Add(label10);
+            Controls.Add(textBox5);
+            Controls.Add(label9);
             Controls.Add(richTextBox1);
             Controls.Add(button3);
             Controls.Add(label7);
@@ -292,6 +361,12 @@
         private Button button3;
         private PictureBox pictureBox1;
         private RichTextBox richTextBox1;
+        private Label label9;
+        private TextBox textBox5;
+        private Label label10;
+        private TextBox textBox6;
+        private RichTextBox richTextBox2;
+        private Button button4;
     }
 
 }

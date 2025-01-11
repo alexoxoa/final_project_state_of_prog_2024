@@ -14,6 +14,13 @@ namespace final_project_state_of_prog_2024
         void ReturnBook(string bookTitle);
     }
 
+    // Интерфейс для обработки действий сотрудников библиотеки
+    public interface IEmployeeActions
+    {
+        void ManageBorrowedBooks();
+        void NotifyReaders();
+    }
+
     // Интерфейс для обработки действий пользователя (например, читателя)
     public interface IUserActions
     {
@@ -22,7 +29,17 @@ namespace final_project_state_of_prog_2024
 
     public class Reader : Person, IBorrowable, IUserActions
     {
+        //Композиция
+
         public Dictionary<string, DateTime> BorrowedBooks { get; set; } = new Dictionary<string, DateTime>();
+
+        public Person Person
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         public Reader(int id, string fullName)
             : base(id, fullName) { }
@@ -30,10 +47,10 @@ namespace final_project_state_of_prog_2024
         public override string GetInfo()
         {
             string borrowedBooksInfo = BorrowedBooks.Count > 0
-                ? string.Join("\n", BorrowedBooks.Select(b => $"- {b.Key} (Borrowed on: {b.Value:d})"))
-                : "No borrowed books.";
+                ? string.Join("\n", BorrowedBooks.Select(b => $"- {b.Key} (Взяты: {b.Value:d})"))
+                : "Нет взятых книг.";
 
-            return $"ID: {ID}, Full Name: {FullName}\nBorrowed Books:\n{borrowedBooksInfo}";
+            return $"ID: {ID}, Полное имя: {FullName}\nВзятые книги:\n{borrowedBooksInfo}";
         }
 
         // Реализация интерфейса IBorrowable
@@ -41,6 +58,15 @@ namespace final_project_state_of_prog_2024
         {
             BorrowedBooks[bookTitle] = borrowDate;
             BookBorrowed?.Invoke(this, new BookActionEventArgs(bookTitle, borrowDate));
+        }
+
+        public void BorrowBook(Book book, DateTime borrowDate)
+        {
+            BorrowedBooks[book.Title] = borrowDate;
+        }
+        public void BorrowBook(string bookTitle)
+        {
+            BorrowBook(bookTitle, DateTime.Now);
         }
 
         public void ReturnBook(string bookTitle)
@@ -104,12 +130,6 @@ namespace final_project_state_of_prog_2024
         public abstract string GetInfo();
     }
 
-    // Интерфейс для обработки действий сотрудников библиотеки
-    public interface IEmployeeActions
-    {
-        void ManageBorrowedBooks();
-        void NotifyReaders();
-    }
 
     public class LibraryEmployee : Person, IEmployeeActions
     {
@@ -138,7 +158,7 @@ namespace final_project_state_of_prog_2024
         {
             MessageBox.Show($"{FullName} отправляет уведомления читателям.");
         }
-
+        // Ассоциация
         public List<BorrowedBook> BorrowedBooks { get; set; } = new List<BorrowedBook>();
 
         public void AddBook(BorrowedBook book)
@@ -155,6 +175,22 @@ namespace final_project_state_of_prog_2024
             else
             {
                 richTextBox.Text += string.Join(Environment.NewLine, BorrowedBooks.Select(b => b.GetBookInfo())) + "\n";
+            }
+        }
+
+        public BorrowedBook BorrowedBook
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Person Person
+        {
+            get => default;
+            set
+            {
             }
         }
     }
@@ -179,9 +215,17 @@ namespace final_project_state_of_prog_2024
     }
 
     // Класс VipReader, наследник Person
-    public class VipReader : Person
+    public class VipReader : Person, IUserActions
     {
         public string VIPLevel { get; set; }
+
+        public Person Person
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         public VipReader(int id, string fullName, string vipLevel)
             : base(id, fullName)
@@ -211,4 +255,6 @@ namespace final_project_state_of_prog_2024
 
         }
     }
+
+
 }

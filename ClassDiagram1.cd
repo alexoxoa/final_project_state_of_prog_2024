@@ -13,20 +13,23 @@
       </Delegate>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAABAAQAAAQAAAAAAQABAAACEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIAAAAAABAAQAAAQAAAAAAQABAAACEAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
+    <ShowAsAssociation>
+      <Property Name="Person" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.208" />
   </Class>
   <Class Name="final_project_state_of_prog_2024.BookActionEventArgs" Collapsed="true">
-    <Position X="10.5" Y="2.5" Width="1.5" />
+    <Position X="10" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="final_project_state_of_prog_2024.Book" Collapsed="true">
-    <Position X="6.5" Y="6.25" Width="1.5" />
+    <Position X="10" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEAEgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
@@ -40,52 +43,65 @@
     </TypeIdentifier>
   </Class>
   <Class Name="final_project_state_of_prog_2024.LibraryEmployee">
-    <Position X="8.5" Y="1.75" Width="1.5" />
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <AssociationLine Name="BorrowedBook" Type="final_project_state_of_prog_2024.BorrowedBook">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.482" Y="0.143" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAQgABAAAAAAgACQAAAAAAAAAAEAAAAAAAAAEAAA=</HashCode>
+      <HashCode>AIAAAQgABAAAAAAgACQAAAAAAAAAAEAIAAAAAAAEAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BorrowedBook" />
+      <Property Name="Person" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="final_project_state_of_prog_2024.BorrowedBook">
-    <Position X="8.5" Y="5.25" Width="1.5" />
+  <Class Name="final_project_state_of_prog_2024.BorrowedBook" Collapsed="true">
+    <Position X="8.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAEAAEAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="final_project_state_of_prog_2024.VipReader" Collapsed="true">
-    <Position X="12.5" Y="1.75" Width="1.5" />
+    <Position X="10" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAA=</HashCode>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Person" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="final_project_state_of_prog_2024.VipClient" Collapsed="true">
-    <Position X="12.5" Y="2.5" Width="1.5" />
+    <Position X="10" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="final_project_state_of_prog_2024.IEmployeeActions" Collapsed="true">
-    <Position X="10.5" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Class1.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="final_project_state_of_prog_2024.IBorrowable" Collapsed="true">
-    <Position X="10.5" Y="3.25" Width="1.5" />
+    <Position X="11.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAQAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="final_project_state_of_prog_2024.IUserActions" Collapsed="true">
-    <Position X="10.5" Y="4" Width="1.5" />
+    <Position X="11.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Class1.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="final_project_state_of_prog_2024.IEmployeeActions" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class1.cs</FileName>
     </TypeIdentifier>
   </Interface>
