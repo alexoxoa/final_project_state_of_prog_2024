@@ -33,6 +33,14 @@ namespace final_project_state_of_prog_2024
 
         public Dictionary<string, DateTime> BorrowedBooks { get; set; } = new Dictionary<string, DateTime>();
 
+        public Person Person
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public Reader(int id, string fullName)
             : base(id, fullName) { }
 
@@ -50,6 +58,15 @@ namespace final_project_state_of_prog_2024
         {
             BorrowedBooks[bookTitle] = borrowDate;
             BookBorrowed?.Invoke(this, new BookActionEventArgs(bookTitle, borrowDate));
+        }
+
+        public void BorrowBook(Book book, DateTime borrowDate)
+        {
+            BorrowedBooks[book.Title] = borrowDate;
+        }
+        public void BorrowBook(string bookTitle)
+        {
+            BorrowBook(bookTitle, DateTime.Now);
         }
 
         public void ReturnBook(string bookTitle)
@@ -160,6 +177,22 @@ namespace final_project_state_of_prog_2024
                 richTextBox.Text += string.Join(Environment.NewLine, BorrowedBooks.Select(b => b.GetBookInfo())) + "\n";
             }
         }
+
+        public BorrowedBook BorrowedBook
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Person Person
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 
     public class BorrowedBook
@@ -185,6 +218,14 @@ namespace final_project_state_of_prog_2024
     public class VipReader : Person, IUserActions
     {
         public string VIPLevel { get; set; }
+
+        public Person Person
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         public VipReader(int id, string fullName, string vipLevel)
             : base(id, fullName)

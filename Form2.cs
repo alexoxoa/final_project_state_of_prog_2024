@@ -253,7 +253,7 @@ namespace final_project_state_of_prog_2024
 
                 // Взятие книги и вызов события
                 reader.BorrowBook(selectedBook.Title, borrowDate);
-
+                //reader.BorrowBook(selectedBook.Title);
                 // Сохранение информации о взятой книге в файл
                 reader.SaveBorrowedBookToFile(selectedBook.Title, selectedBook.Author, borrowDate, "borrowed_books.txt");
 
